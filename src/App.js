@@ -1,9 +1,12 @@
 import './App.css';
+import Cars from "./components/cars/Cars";
+import Comments from "./components/comments/Comments";
 
 function App() {
   return (
     <div className="App">
-      hello world
+        {/*<Cars/>*/}
+      <Comments/>
     </div>
   );
 }
