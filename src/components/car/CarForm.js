@@ -1,15 +1,17 @@
 import {useForm} from "react-hook-form";
 import {carService} from "../../services/car.service";
 import {useEffect} from "react";
+import {joiResolver} from "@hookform/resolvers/joi";
+import {carValidator} from "../../validators/car.validator";
 
 const CarForm = ({setNewCar, carForUpdate}) => {
     const {
         register,
         handleSubmit,
         reset,
-        formState: {isValid},
+        formState: {isValid, errors},
         setValue
-    } = useForm({mode: "all"});
+    } = useForm({mode: "all", resolver: joiResolver(carValidator)});
 
     useEffect(() => {
         if (carForUpdate) {
@@ -30,12 +32,12 @@ const CarForm = ({setNewCar, carForUpdate}) => {
     };
     return (
         <form onSubmit={handleSubmit(carForUpdate ? update : save)}>
-            <input type="text" placeholder={"enter brand"} {...register("brand", {required: true})}/>
-            <input type="text" placeholder={"enter price"} {...register("price", {
-                valueAsNumber: true,
-                required: true
-            })}/>
+            <input type="text" placeholder={"enter brand"} {...register("brand")}/>
+            {errors.brand && <span>{errors.brand.message}</span>}
+            <input type="text" placeholder={"enter price"} {...register("price")}/>
+            {errors.price && <span>{errors.price.message}</span>}
             <input type="text" placeholder={"enter year"} {...register("year", {valueAsNumber: true, required: true})}/>
+            {errors.year && <span>{errors.year.message}</span>}
             <button disabled={!isValid}>{carForUpdate?"Update":"Save"}</button>
         </form>
     );
