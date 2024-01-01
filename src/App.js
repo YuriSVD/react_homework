@@ -25,7 +25,9 @@ function App() {
                         </Route>
                     </Route>
                 </Route>
-                <Route path={"/posts"} element={<Posts/>}/>
+                <Route path={"/posts"} element={<Posts/>}>
+                    <Route path={":postId"} element={<PostDetails/>}/>
+                </Route>
                 <Route path={"/comments"} element={<Comments/>}/>
             </Routes>
         </div>
