@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Outlet, useNavigate, useParams} from "react-router-dom";
 import {userService} from "../services/user.service";
 
 const UserDetails = () => {
@@ -10,7 +10,6 @@ const UserDetails = () => {
             .then(value => value.data)
             .then(value => setUser(value));
     }, [userId]);
-    console.log(user);
     const navigate = useNavigate();
     return (
         <>
