@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import css from "./Pagination.module.css"
+import React, {useState} from 'react';
 
 const PaginationPage = ({pagination, setSelectedPage}) => {
     let [currentPage, setCurrentPage] = useState(1);
     const {next, prev} = pagination;
     return (
-        <div>
+        <div className={css.Pagination}>
             <button disabled={!prev} onClick={()=> {
                 setSelectedPage(prev);
                 setCurrentPage(--currentPage);
