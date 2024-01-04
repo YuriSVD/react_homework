@@ -1,0 +1,13 @@
+.Episode {
+    width: 25vw;
+    height: 7vw;
+    text-decoration: none;
+    color: black;
+    border: black 1px solid;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
