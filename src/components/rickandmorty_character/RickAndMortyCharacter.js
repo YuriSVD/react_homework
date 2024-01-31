@@ -1,14 +1,15 @@
 import React from 'react';
 
 const RickAndMortyCharacter = ({rickAndMortyCharacter}) => {
+    const {id, name, status, species, gender, image} = rickAndMortyCharacter;
     return (
         <div>
-            <img src={rickAndMortyCharacter.image} alt={rickAndMortyCharacter.name}/>
-            <h2>{rickAndMortyCharacter.name}</h2>
+            <img src={image} alt={name}/>
+            <h2>{id} {name}</h2>
             <ul>
-                <li>Status: {rickAndMortyCharacter.status}</li>
-                <li>Species: {rickAndMortyCharacter.species}</li>
-                <li>Gender: {rickAndMortyCharacter.gender}</li>
+                <li>Status: {status}</li>
+                <li>Species: {species}</li>
+                <li>Gender: {gender}</li>
             </ul>
         </div>
     );
