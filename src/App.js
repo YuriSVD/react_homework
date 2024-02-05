@@ -1,8 +1,9 @@
-import './App.css';
-import Posts from "./components/posts/Posts";
 import {useState} from "react";
-import ChosenPost from "./components/post/ChosenPost";
-import Launches from "./components/launches/Launches";
+
+import './App.css';
+import Posts from "./components/Posts/Posts";
+import ChosenPost from "./components/ChosenPost/ChosenPost";
+import Launches from "./components/Launches/Launches";
 
 function App() {
     const [chosenPost, setChosenPost] = useState(null);
@@ -12,7 +13,10 @@ function App() {
     return (
         <div className="App">
             <div>
-                {chosenPost && <ChosenPost chosenPost={chosenPost}/>}
+                {chosenPost && <div>
+                    <ChosenPost chosenPost={chosenPost}/>
+                    <hr/>
+                </div>}
                 <Posts lift={lift}/>
             </div>
             <div>

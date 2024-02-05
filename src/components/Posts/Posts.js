@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import Post from "../post/Post";
+
+import Post from "../Post/Post";
+import {jsonService} from "../../services/json.service";
 
 const Posts = ({lift}) => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then(value => value.json())
-            .then(value => setPosts(value))
+        jsonService.getAll().then(value => value.data).then(value => setPosts(value));
     }, []);
     return (
         <div>

@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import Launch from "../launche/Launch";
+
+import Launch from "../Launche/Launch";
+import {spaceXService} from "../../services/spacex.service";
 
 const Launches = () => {
     const [launches, setLaunches] = useState([]);
     useEffect(() => {
-        fetch("https://api.spacexdata.com/v3/launches/")
-            .then(value => value.json())
-            .then(value => setLaunches(value));
+        spaceXService.getAll().then(value => value.data).then(value => setLaunches(value));
     }, []);
     return (
         <div>
