@@ -14,12 +14,13 @@ const PostDetails = () => {
     console.log(post);
     return (<>
             {post &&
-            <div>
-                <div>UserId: {post.userId}</div>
-                <div>Id: {post.id}</div>
-                <div>Title: {post.title}</div>
-                <div>Body: {post.body}</div>
-            </div>}
+                <div>
+                    <h3>Post Details</h3>
+                    <div>UserId: {post.userId}</div>
+                    <div>Id: {post.id}</div>
+                    <div>Title: {post.title}</div>
+                    <div>Body: {post.body}</div>
+                </div>}
     </>);
 };
 
