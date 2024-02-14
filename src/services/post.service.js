@@ -1,10 +1,10 @@
-import {axiosService} from "./axios.service";
-import {urls} from "../configs/urls";
+import {apiService} from "./api.service";
+import {urls} from "../configs";
 
 const postService = {
-    getAll: () => axiosService.get(urls.posts),
-    getPostById: (id) => axiosService.get(`${urls.posts}/${id}`),
-    getCommentsToPost: (id) => axiosService.get(`${urls.posts}/${id}/${urls.comments}`)
+    getAll: () => apiService.get(urls.posts),
+    getPostById: (id) => apiService.get(`${urls.posts}/${id}`),
+    getCommentsToPost: (id) => apiService.get(`${urls.posts}/${id}/${urls.comments}`)
 }
 
 export {postService};
