@@ -1,6 +1,7 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
-import Character from "../Character/Character";
+
+import {Character} from "../Character";
 
 const Characters = () => {
     const {state} = useLocation();
@@ -11,4 +12,4 @@ const Characters = () => {
     );
 };
 
-export default Characters;
+export {Characters};

@@ -1,7 +1,8 @@
-import css from "./Pagination.module.css"
 import React, {useState} from 'react';
 
-const PaginationPage = ({pagination, setSelectedPage}) => {
+import css from "./Pagination.module.css"
+
+const Pagination = ({pagination, setSelectedPage}) => {
     let [currentPage, setCurrentPage] = useState(1);
     const {next, prev} = pagination;
     return (
@@ -19,4 +20,4 @@ const PaginationPage = ({pagination, setSelectedPage}) => {
     );
 };
 
-export default PaginationPage;
+export {Pagination};

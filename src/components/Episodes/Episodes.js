@@ -1,26 +1,31 @@
-import "./Episodes.css"
-import React, {useEffect, useState} from 'react';
-import Episode from "../Episode/Episode";
-import PaginationPage from "../PaginationPage/PaginationPage";
-import {startURL} from "../../configs";
+import {useEffect, useState} from "react";
+
+import {Episode} from "../Episode";
+import css from "./Episodes.module.css"
+import axios from "axios";
+import {baseURL} from "../../configs";
+import {Pagination} from "../Pagination";
+
 const Episodes = () => {
-    const [pagination, setPagination] = useState({prev: null, next: null, episodes: []});
-    const [selectedPage, setSelectedPage] = useState(startURL);
+    const [selectedPage, setSelectedPage] = useState(baseURL);
+
+    const [apiResponse, setApiResponse] = useState({prev: null, next: null, episodes: []});
+
     useEffect(() => {
-        fetch(selectedPage)
-            .then(value => value.json())
+        axios.create({baseURL: selectedPage}).get()
+            .then(value => value.data)
             .then(value => {
-                setPagination({prev: value.info.prev, next: value.info.next, episodes: value.results});
+                setApiResponse({prev: value.info.prev, next: value.info.next, episodes: value.results})
             });
     }, [selectedPage]);
     return (
         <div>
-            <div className={"Episodes"}>
-                {pagination.episodes.map(episode => <Episode key={episode.id} item={episode}/>)}
+            <div className={css.Episodes}>
+                {apiResponse.episodes.map(episode => <Episode key={episode.id} item={episode}/>)}
             </div>
-            <PaginationPage pagination={pagination} setSelectedPage={setSelectedPage}/>
+            <Pagination setSelectedPage={setSelectedPage} pagination={apiResponse}/>
         </div>
     );
 };
 
-export default Episodes;
+export {Episodes};
