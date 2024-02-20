@@ -1,4 +1,9 @@
-const baseURL = "https://rickandmortyapi.com/api/episode?page=1";
+const baseURL = "https://rickandmortyapi.com/api";
+
+const urls = {
+    characters: "/character",
+    episodes: "/episode"
+}
 
 
-export {baseURL}
+export {baseURL, urls}

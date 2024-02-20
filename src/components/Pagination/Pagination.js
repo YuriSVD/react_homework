@@ -2,19 +2,18 @@ import React, {useState} from 'react';
 
 import css from "./Pagination.module.css"
 
-const Pagination = ({pagination, setSelectedPage}) => {
+const Pagination = ({setQuery, totalPages}) => {
     let [currentPage, setCurrentPage] = useState(1);
-    const {next, prev} = pagination;
     return (
         <div className={css.Pagination}>
-            <button disabled={!prev} onClick={()=> {
-                setSelectedPage(prev);
-                setCurrentPage(--currentPage);
+            <button disabled={currentPage === 1} onClick={()=> {
+                setQuery(prev => {prev.set("page", (--currentPage).toString())})
+                setCurrentPage(currentPage);
             }}>prev</button>
             <div>{currentPage}</div>
-            <button disabled={!next} onClick={() => {
-                setSelectedPage(next);
-                setCurrentPage(++currentPage);
+            <button disabled={currentPage === totalPages} onClick={() => {
+                setQuery(prev => {prev.set("page", (++currentPage).toString())})
+                setCurrentPage(currentPage);
             }}>next</button>
         </div>
     );
