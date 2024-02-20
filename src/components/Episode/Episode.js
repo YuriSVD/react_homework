@@ -9,7 +9,7 @@ const Episode = ({item}) => {
     const {setEpisodeTitle} = useAppContext();
 
     return (
-        <Link to={`/episode/${id}/characters`} state={{...characters}} onClick={() => setEpisodeTitle(name)} className={css.Episode}>
+        <Link to={`/episode/${id}/characters`} state={characters} onClick={() => setEpisodeTitle(name)} className={css.Episode}>
             <div>Id: {id}</div>
             <div>name: {name}</div>
             <div>Episode: {episode}</div>

@@ -7,7 +7,7 @@ const Characters = () => {
     const {state} = useLocation();
     return (
         <div>
-            {Object.values(state).map((characterLink, index) => <Character key={index} characterLink={characterLink}/>)}
+            {state.map((characterLink, index) => <Character key={index} characterLink={characterLink}/>)}
         </div>
     );
 };
