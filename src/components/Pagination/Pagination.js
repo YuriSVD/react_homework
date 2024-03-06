@@ -1,20 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useSelector} from "react-redux";
 
+import {usePageQuery} from "../../hooks";
 import css from "./Pagination.module.css"
 
-const Pagination = ({setQuery, totalPages}) => {
-    let [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({setQuery}) => {
+    const {totalPages} = useSelector(state => state.episodes);
+
+    const {page, prevPage, nextPage} = usePageQuery();
+
     return (
         <div className={css.Pagination}>
-            <button disabled={currentPage === 1} onClick={()=> {
-                setQuery(prev => {prev.set("page", (--currentPage).toString())})
-                setCurrentPage(currentPage);
-            }}>prev</button>
-            <div>{currentPage}</div>
-            <button disabled={currentPage === totalPages} onClick={() => {
-                setQuery(prev => {prev.set("page", (++currentPage).toString())})
-                setCurrentPage(currentPage);
-            }}>next</button>
+            <button disabled={+page === 1} onClick={prevPage}>prev</button>
+            <div>{page}</div>
+            <button disabled={+page === totalPages} onClick={nextPage}>next</button>
         </div>
     );
 };

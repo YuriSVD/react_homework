@@ -1,12 +1,11 @@
 import React from 'react';
-import {useAppContext} from "../../hooks";
-
+import {useSelector} from "react-redux";
 const Header = () => {
-    const {episodeTitle} = useAppContext();
+    const {selectedEpisode} = useSelector(state => state.episodes);
     return (
         <div>
             <h2>Rick and Morty</h2>
-            {episodeTitle && <h2>Episode: {episodeTitle}</h2>}
+            {selectedEpisode && <h2>Episode: {selectedEpisode.name}</h2>}
         </div>
     );
 };

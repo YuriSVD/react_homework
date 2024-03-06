@@ -1,27 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React from 'react';
 
-const Character = ({characterLink}) => {
-    const [character, setCharacter] = useState(null);
+const Character = ({character}) => {
 
-    useEffect(() => {
-        axios.create({baseURL: characterLink}).get("").then(value => value.data).then(value => setCharacter(value));
-    }, [characterLink]);
-
+    const {id, name, image, gender, species, status} = character;
 
     return (
-        <>
-            {character &&
-                <div>
-                    <img src={character.image} alt={character.name}/>
-                    <h4>{character.id}. {character.name}</h4>
-                    <ul>
-                        <li>{character.gender}</li>
-                        <li>{character.species}</li>
-                        <li>{character.status}</li>
-                    </ul>
-                </div>}
-        </>
+        <div>
+            <img src={image} alt={name}/>
+            <h4>{id}. {name}</h4>
+            <ul>
+                <li>{gender}</li>
+                <li>{species}</li>
+                <li>{status}</li>
+            </ul>
+        </div>
 
     );
 };

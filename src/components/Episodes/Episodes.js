@@ -1,27 +1,29 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 import {Episode} from "../Episode";
 import css from "./Episodes.module.css"
+import {usePageQuery} from "../../hooks";
 import {Pagination} from "../Pagination";
-import {rickAndMortyService} from "../../services";
-import {useSearchParams} from "react-router-dom";
+import {episodeActions} from "../../store";
 
 const Episodes = () => {
 
-    const [apiResponse, setApiResponse] = useState({pages: null, episodes: []});
+    const {episodes} = useSelector(state => state.episodes);
 
-    const [query, setQuery] = useSearchParams({page: "1"});
+    const dispatch = useDispatch();
+
+    const {page} = usePageQuery();
 
     useEffect(() => {
-        rickAndMortyService.getAllEpisodes(query.get("page")).then(value => value.data)
-            .then(value => setApiResponse({episodes: value.results, pages: value.info.pages}))
-    }, [query.get("page")]);
+        dispatch(episodeActions.getAll(page));
+    }, [dispatch, page]);
     return (
         <div>
             <div className={css.Episodes}>
-                {apiResponse.episodes.map(episode => <Episode key={episode.id} item={episode}/>)}
+                {episodes.map(episode => <Episode key={episode.id} item={episode}/>)}
             </div>
-            <Pagination totalPages={apiResponse.pages} setQuery={setQuery}/>
+            <Pagination/>
         </div>
     );
 };
